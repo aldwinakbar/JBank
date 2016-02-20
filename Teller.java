@@ -8,8 +8,6 @@
 public class Teller
 {
     // instance variables - replace the example below with your own
-    private int x;
-
     /**
      * Constructor for objects of class Teller
      */

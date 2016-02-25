@@ -25,31 +25,34 @@ public class Account
     }
    
     private void deposit(double amount) {
-        
+    
     }
     
     public char getAcctType() {
-        return '\0';
+        
+        return acctType;
     }
     
-    private double getBalance() {
-        return 0;
+    public double getBalance() {
+        return balance;
     }
     
     public String getId() {
-        return "";
+        return id;
     }
     
-    private void setBalance(double amount) {
-        
+    public void setBalance(double amount) {
+        balance = amount;
     }
     
     public void setID(String acctId) {
         
+        id = acctId;
     }
     
     public void setAcctType(char type) {
         
+        acctType = type;
     }
     
     private void withdraw(double amount) {

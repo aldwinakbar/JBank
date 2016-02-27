@@ -1,4 +1,7 @@
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Write a description of class Customer here.
  * 
@@ -71,8 +74,17 @@ public class Customer
         
     }
     
-    public void setEmail(String emailAddress) {
-        email = emailAddress;        
+    public boolean setEmail(String emailAddress) {
+        String regex_email = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
+        Pattern pattern = Pattern.compile(regex_email);
+        Matcher matcher = pattern.matcher(emailAddress);
+        if(matcher.matches()){
+            email = emailAddress; 
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     
     public void setName(String lname, String fname) {

@@ -24,8 +24,15 @@ public class Account
         
     }
    
-    private void deposit(double amount) {
-    
+    public boolean deposit(double amount) {
+        if (amount >= 0){
+            balance += amount;
+            return true;
+        }
+        
+        else {
+            return false;
+        }
     }
     
     public char getAcctType() {
@@ -55,7 +62,16 @@ public class Account
         acctType = type;
     }
     
-    private void withdraw(double amount) {
-        
+    public boolean withdraw(double amount) {
+    
+        double balance_temp = balance;
+        double withdraw_result = balance_temp-amount;
+        if(withdraw_result >=0){
+            balance = withdraw_result;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

@@ -11,11 +11,13 @@ public class Bank
     private static double creditInterestRate;
     private static String closeTime;
     private static double investmentInterestRate;
-    private static int lastCustID;
-    private static int nextCustID;
+    private static int lastCustID = 1000;
+    private static int nextCustID = 1000;
     private static String phone;
     private static double premiumInterestRate;
     private static String startTime;
+    private static int numOfCurrentCustomer;
+    //private static int nextID; //modul 2
     public static String website;
     public static String bankAddress = "1234 JavaStreet, AnyCity, ThisState, 34567";
     public static int maxNumOfCustomers = 20;
@@ -46,11 +48,15 @@ public class Bank
     }
     
     public static int getLastID() {
-        return 0;
+        return lastCustID;
     }
     
     public static int getMaxCustomers() {
         return 0;
+    }
+    
+    public static int getNumOfCurrentCustomers(){
+        return numOfCurrentCustomer;
     }
     
     public static String getName() {
@@ -58,7 +64,9 @@ public class Bank
     }
     
     public static int getNextID() {
-        return 0;
+        nextCustID ++;
+        lastCustID = nextCustID - 1;
+        return nextCustID;
     }
     
     public static String getWebsite() {

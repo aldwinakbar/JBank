@@ -1,20 +1,25 @@
 
 /**
- * Write a description of class Teller here.
+ * The main class of the JBank program. 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Aldwin Hermanudin 
+ * @version 27/02/2016
  */
 public class Teller
 {
-    // instance variables - replace the example below with your own
     /**
      * Constructor for objects of class Teller
      */
     public Teller()
     {
-        // initialise instance variables
+        
     }
+    
+    /**
+     * Main method in Teller class, as the entry point of the JBank program
+     * 
+     * @param  args     
+     */
     
      public static void main(String[] args) {
         // put your code here

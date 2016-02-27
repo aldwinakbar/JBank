@@ -1,10 +1,11 @@
 
 /**
- * Write a description of class Bank here.
+ * Bank class to store every customer information.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Aldwin Hermanudin 
+ * @version 27/02/2016
  */
+
 public class Bank
 {
     // instance variables - replace the example below with your own

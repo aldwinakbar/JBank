@@ -18,23 +18,24 @@ public class Bank
     private static double premiumInterestRate;
     private static String startTime;
     private static int numOfCurrentCustomer;
-    //private static int nextID; //modul 2
     public static String website;
-    public static String bankAddress = "1234 JavaStreet, AnyCity, ThisState, 34567";
-    public static int maxNumOfCustomers = 20;
-    public static String bankName = "JBANK";
+    public static final String  BANK_ADDRESS = "1234 JavaStreet, AnyCity, ThisState, 34567";
+    public static final int MAX_NUM_OF_CUSTOMERS = 20;
+    public static final String  BANK_NAME = "JBANK";
 
     /**
      * Constructor for objects of class Bank
      */
-    public Bank() {
+    private Bank() {
         // initialise instance variables
         
     }
 
+    /*
     public static String getAddress() {
         return "";
     }
+    */
     
     public static double getCreditRate() {
         return 0;
@@ -52,21 +53,32 @@ public class Bank
         return lastCustID;
     }
     
+    /*
     public static int getMaxCustomers() {
         return 0;
     }
-    
+    */
+   
     public static int getNumOfCurrentCustomers(){
         return numOfCurrentCustomer;
     }
     
+    /*
     public static String getName() {
         return "";
     }
+    */
     
     public static int getNextID() {
-        nextCustID ++;
-        lastCustID = nextCustID - 1;
+       
+        if (numOfCurrentCustomer == MAX_NUM_OF_CUSTOMERS){
+            // do nothing           
+        }
+        else{
+            numOfCurrentCustomer++;
+            nextCustID++;
+            lastCustID = nextCustID - 1;
+        }
         return nextCustID;
     }
     

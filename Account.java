@@ -17,10 +17,14 @@ public class Account
      */
     public Account() {
         // initialise instance variables
+        acctType = 'S';
+        balance = 10.00;
         
     }
 
     public Account(char type, double amount) {
+        acctType = type;
+        balance = amount;
         
     }
    

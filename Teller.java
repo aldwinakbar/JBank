@@ -23,15 +23,13 @@ public class Teller
     
      public static void main(String[] args) {
         // put your code here
-        Customer c1 = new Customer();
-        c1.setName("Sanadhi","Sutandi");
+        Customer c1 = new Customer("Sanadhi","Sutandi");
         System.out.print(c1.getCustomerName()+"\n");
         
         Account a1 = new Account();
         a1.setBalance(123);
         
         c1.setAccount(a1);
-        Account c1a1 = c1.getAccount();
-        System.out.print(c1a1.getBalance()+"\n");
+        System.out.print(c1.getAccount().getBalance()+"\n");
     }
 }

@@ -1,4 +1,3 @@
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,22 +21,14 @@ public class Customer
     private String streetAddress;
     private String phoneNumber;
     private String zipOrPostalCode;
-
-    /**
-     * Constructor for objects of class Customer
-     */
-    public Customer()
-    {
-        
-    }
     
     /**
      * Constructor overload for objects of class Customer
      * @param  fname, lname, dob
      * 
      */
-     public Customer(String fname, String lname, String dob) {
-    
+     public Customer(String fname, String lname) {
+         this(fname, lname, "");
     }
     
     /**
@@ -45,8 +36,11 @@ public class Customer
      * @param firstName, lastName, dateOfBirth, custId
      * 
      */
-    public Customer(String firstName, String lastName, String dateOfBirth, int custId) {
-        
+    public Customer(String firstName, String lastName, String dateOfBirth) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.custId = Bank.getNextID();
     }
        
     /**
@@ -161,6 +155,15 @@ public class Customer
      */
     public void setAccount(Account account_input){
         accounts = account_input;        
+    }
+    
+    /**
+     * Method to change the account of the Customer
+     * 
+     * @param account_input
+     */
+    public void setCustId(int cust_id_input){
+        custId = cust_id_input;        
     }
     
     /**

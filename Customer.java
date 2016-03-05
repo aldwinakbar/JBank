@@ -107,18 +107,6 @@ public class Customer
     }
     
     /**
-     * Method to change address of the customer
-     * 
-     * @param street, city, code
-     */
-    public void setAddress(String street, String city, String code) {
-        String streetAddress = street;
-        cityAddress = city;
-        zipOrPostalCode = code;
-        
-    }
-    
-    /**
      * Method to set email of the customer, also checks the format of the email using regex with RFC 5322
      *
      * @param emailAddress
@@ -136,18 +124,7 @@ public class Customer
             return false;
         }
     }
-    
-    /**
-     * Method to change name of the customer
-     * 
-     * @param lname, fname
-     */
-    public void setName(String lname, String fname) {
-         lastName = lname;
-         firstName = fname;
         
-    }
-    
     /**
      * Method to change the account of the Customer
      * 

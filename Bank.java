@@ -1,3 +1,5 @@
+import java.util.*;
+import java.text.*;
 
 /**
  * Bank class to store every customer information.
@@ -10,13 +12,13 @@ public class Bank
 {
     // instance variables - replace the example below with your own
     private static double creditInterestRate;
-    private static String closeTime;
+    private static Date closeTime;
     private static double investmentInterestRate;
     private static int lastCustID = 1000;
     private static int nextCustID = 1000;
     private static String phone;
     private static double premiumInterestRate;
-    private static String startTime;
+    private static Date startTime;
     private static int numOfCurrentCustomer;
     public static String website;
     public static final String  BANK_ADDRESS = "1234 JavaStreet, AnyCity, ThisState, 34567";
@@ -46,7 +48,11 @@ public class Bank
     }
     
     public static String getHoursOfOperation() {
-        return "";
+        
+         SimpleDateFormat sdf_12 = new SimpleDateFormat("hh:mm aa");
+         String date_s_12 = sdf_12.format(Bank.getStartTime());
+         String date_c_12 = sdf_12.format(Bank.getCloseTime());
+        return date_s_12 + " To " + date_c_12;
     }
     
     public static int getLastID() {
@@ -68,6 +74,30 @@ public class Bank
         return "";
     }
     */
+   
+    public static Date getStartTime(){
+        
+        return startTime;
+    }
+    
+    public static Date getCloseTime(){
+    
+        return closeTime;
+    }
+    
+    public static void setStartTime(int hour, int minute){
+        int year = 1995;
+        int month = 11;
+        int day = 20;
+        startTime =  (new GregorianCalendar(year, month, day, hour, minute).getTime());
+    }
+    
+    public static void setCloseTime(int hour, int minute){
+        int year = 1995;
+        int month = 11;
+        int day = 20;     
+        closeTime =  (new GregorianCalendar(year, month, day, hour, minute).getTime());
+    }
     
     public static int getNextID() {
        
@@ -81,6 +111,8 @@ public class Bank
         }
         return nextCustID;
     }
+    
+    
     
     public static String getWebsite() {
         return "";

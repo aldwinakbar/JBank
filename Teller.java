@@ -1,4 +1,10 @@
 import java.util.Scanner;
+import java.util.Date;
+import java.util.Calendar;
+import java.util.*;
+import java.text.SimpleDateFormat;
+import java.math.*;
+
 /**
  * The main class of the JBank program. 
  * 
@@ -16,21 +22,76 @@ public class Teller
     }
     
     /**
+     * Calculate the compound interest rate for investment account
+     * 
+     * @param  days, rate, balance, investment_term
+     */
+    
+    private static double compoundInterestRate(int days, double rate, double balance, int investment_term){
+        
+        if (investment_term > 0 && investment_term <= 6)    rate = 0.05;
+        else if (investment_term > 6 && investment_term <= 12 ) rate = 0.06;
+        else if (investment_term > 12)  rate = 0.07;
+        
+        return compoundInterestRate(days, rate, balance);
+    }
+    
+    /**
+     * Calculate the compound interest rate for savings account
+     * 
+     * @param  days, rate, balance     
+     */
+    
+    private static double compoundInterestRate(int days, double rate, double balance){
+                
+        BigDecimal bal = new BigDecimal(balance);
+        BigDecimal n = new BigDecimal(360.0); 
+        BigDecimal t = new BigDecimal(days);
+        BigDecimal r = new BigDecimal(rate);
+        BigDecimal one = new BigDecimal(1); 
+        BigDecimal f1 = r.divide(n, BigDecimal.ROUND_HALF_EVEN).add(one);
+        BigDecimal f2 = bal.multiply(f1);
+        BigDecimal f3 = n.multiply(t);
+        return Math.pow(f2.doubleValue(), f3.doubleValue());
+    }
+    
+    /**
      * Main method in Teller class, as the entry point of the JBank program
      * 
      * @param  args     
      */
     
      public static void main(String[] args) {
-         String continue_flag;
          
+         Account savings_account = new Account('S',1000);
+         Account investment_account = new Account('I',1000);
+         Account credit_account = new Account('C',500);         
+         savings_account.setBalance(compoundInterestRate(1,0.03,savings_account.getBalance()));
+         investment_account.setBalance(compoundInterestRate(1,0.03,investment_account.getBalance(),12));
+         
+         
+         Bank.setStartTime(11,10);
+         Bank.setCloseTime(22,10);
+         
+         SimpleDateFormat sdf_24 = new SimpleDateFormat("k:m");
+         String date_s_24 = sdf_24.format(Bank.getStartTime());
+         String date_c_24 = sdf_24.format(Bank.getCloseTime());
+         
+         System.out.println("Woring Hours");
+         System.out.println(Bank.getHoursOfOperation());
+         System.out.println(date_s_24 + " To " + date_c_24);
+         
+         
+         String continue_flag;
          do{
              Scanner in = new Scanner(System.in);
              Scanner in_2 = new Scanner(System.in);
              String create_customer;
              String first_name;
              String last_name;
-             String date_of_birth;
+             int year = 1995;
+             int month = 1;
+             int day = 1;
              String phone_number;
              String account_type_str;
              char account_type_char;
@@ -42,11 +103,14 @@ public class Teller
                   System.out.println("Insert your last name.");
                   last_name = in.nextLine();
                   System.out.println("Insert your date of birth.(dd/mm/yyyy)");
-                  date_of_birth = in.nextLine();
+                  year = in.nextInt();
+                  month = in.nextInt();
+                  day = in.nextInt();
                   System.out.println("Insert your phone number.");
                   phone_number = in.nextLine();
                   
-                  Customer new_customer = new Customer(first_name,last_name,date_of_birth);
+                  
+                  Customer new_customer = new Customer(first_name,last_name, ( new GregorianCalendar(year, month, day).getTime()));
                   new_customer.setPhoneNumber(phone_number);
                  
                   double initial_balance;
@@ -80,7 +144,7 @@ public class Teller
                   
                   System.out.println("Here are your account information");
                   System.out.println("Name          : "+new_customer.getCustomerName());
-                  System.out.println("Date of birth : "+date_of_birth);
+                  System.out.println("Date of birth : "+new_customer.getDateOfBirth());
                   System.out.println("Phone number  : "+new_customer.getPhoneNumber());
                   System.out.println("Account type  : "+new_customer.getAccount().getAcctType());
                   System.out.println("Balance       : "+new_customer.getAccount().getBalance());

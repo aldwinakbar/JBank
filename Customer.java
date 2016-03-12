@@ -1,5 +1,8 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 /**
  * Customer class to store customer information. Using regex.Matcher and regex.Pattern library
@@ -13,7 +16,7 @@ public class Customer
     private Account accounts = new Account();
     private String cityAddress;
     private int custId;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String email;
     private String firstName; 
     private String lastName;
@@ -27,8 +30,8 @@ public class Customer
      * @param  fname, lname, dob
      * 
      */
-     public Customer(String fname, String lname) {
-         this(fname, lname, "");
+    public Customer(String fname, String lname) {
+         this(fname, lname, null);
     }
     
     /**
@@ -36,7 +39,7 @@ public class Customer
      * @param firstName, lastName, dateOfBirth, custId
      * 
      */
-    public Customer(String firstName, String lastName, String dateOfBirth) {
+    public Customer(String firstName, String lastName, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -77,6 +80,11 @@ public class Customer
      */
     public String getEmail(){
         return email;
+    }
+    
+    public Date getDateOfBirth(){
+        
+        return dateOfBirth;
     }
     
     /**

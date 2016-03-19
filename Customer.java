@@ -13,14 +13,14 @@ import java.text.SimpleDateFormat;
 public class Customer
 {
     // instance variables - replace the example below with your own
-    private Account accounts = new Account();
+    private Account[] accounts = new Account[4];
     private String cityAddress;
     private int custId;
     private Date dateOfBirth;
     private String email;
     private String firstName; 
     private String lastName;
-    private int numberOfCurrentAccounts;
+    private int numberOfCurrentAccounts = 0;
     private String streetAddress;
     private String phoneNumber;
     private String zipOrPostalCode;
@@ -52,7 +52,7 @@ public class Customer
      * @return address information in String
      */
     public String getAddress() {
-        return streetAddress+cityAddress+zipOrPostalCode;
+        return streetAddress+","+cityAddress+","+zipOrPostalCode;
     }
     
     /**
@@ -60,9 +60,31 @@ public class Customer
      * 
      * @return account object
      */
-    public Account getAccount() {
-        return accounts;
+    public Account getAccount(char type) {
+        for (int i = 0; i < accounts.length; i++){
+                if(accounts[i] != null){
+                    if (accounts[i].getId().endsWith(Character.toString(type))) {
+                        return accounts[i];
+                    }
+                }
+        }
+        return null;
     }
+
+    
+    public boolean removeAccount(char type) {
+        for (int i = 0; i < accounts.length; i++){
+                if(accounts[i] != null){
+                    if (accounts[i].getId().endsWith(Character.toString(type))) {
+                        accounts[i] = null;
+                        numberOfCurrentAccounts--;
+                        return true;
+                    }
+                }
+        }
+        return false;
+    }
+    
     
     /**
      * Method to get customer id number
@@ -138,8 +160,22 @@ public class Customer
      * 
      * @param account_input
      */
-    public void setAccount(Account account_input){
-        accounts = account_input;        
+    public boolean addAccount(double balance, char type){
+        boolean accountAdded = false;
+        if (numberOfCurrentAccounts < accounts.length ){
+            for (int i = 0; i < accounts.length; i++){
+                if(accounts[i] != null){
+                    if (accounts[i].getId().endsWith(Character.toString(type))) {break;}
+                }
+                
+                else if (accounts[i] == null){
+                    accounts[i] = new Account(type,balance,this);
+                    accountAdded = true;
+                    numberOfCurrentAccounts++;
+                }
+            }
+        }
+        return accountAdded;     
     }
     
     /**
@@ -159,4 +195,18 @@ public class Customer
     public void setPhoneNumber(String phoneNum) {
         phoneNumber = phoneNum;
     }
+    
+    public void setStreetAddress(String street) {
+        streetAddress = street;
+    }
+    
+    public void setCityAddress(String city) {
+        cityAddress = city;
+    }
+        
+    public void setPostalCode(String zip_code) {
+        zipOrPostalCode = zip_code;
+    }
+    
+    
 }

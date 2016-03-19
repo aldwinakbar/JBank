@@ -1,5 +1,6 @@
 import java.util.*;
 import java.text.*;
+import java.util.Scanner;
 
 /**
  * Bank class to store every customer information.
@@ -22,8 +23,16 @@ public class Bank
     private static int numOfCurrentCustomer;
     public static String website;
     public static final String  BANK_ADDRESS = "1234 JavaStreet, AnyCity, ThisState, 34567";
-    public static final int MAX_NUM_OF_CUSTOMERS = 20;
+    public static final int MAX_NUM_OF_CUSTOMERS;
     public static final String  BANK_NAME = "JBANK";
+    private static Customer[] customer; 
+    
+    static{
+        Scanner in = new Scanner(System.in);
+        System.out.println("Input Maximum Customer : ");
+        MAX_NUM_OF_CUSTOMERS = in.nextInt();   
+        customer = new Customer[MAX_NUM_OF_CUSTOMERS];
+    }
 
     /**
      * Constructor for objects of class Bank
@@ -33,11 +42,30 @@ public class Bank
         
     }
 
-    /*
-    public static String getAddress() {
-        return "";
+    public static boolean addCustomer(Customer customer_input){
+        for (int i = 0; i < MAX_NUM_OF_CUSTOMERS; i++){
+            if (customer[i] == null){
+                customer[i] = customer_input;
+                return true;
+            }
+        }
+        
+        return false;
+    } 
+        
+    public static Customer getCustomer(int custID){ 
+        for (int i = 0; i < MAX_NUM_OF_CUSTOMERS; i++){
+            if (customer[i].getCustomerId()== custID){
+                return customer[i];
+            }
+        }
+        
+        return null;
     }
-    */
+    
+    public static int getMaxNumOfCustomers(){
+        return MAX_NUM_OF_CUSTOMERS;
+    }
     
     public static double getCreditRate() {
         return 0;

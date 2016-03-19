@@ -63,52 +63,40 @@ public class Teller
     
      public static void main(String[] args) {
          
-         Account savings_account = new Account('S',1000);
-         Account investment_account = new Account('I',1000);
-         Account credit_account = new Account('C',500);         
-         savings_account.setBalance(compoundInterestRate(1,0.03,savings_account.getBalance()));
-         investment_account.setBalance(compoundInterestRate(1,0.03,investment_account.getBalance(),12));
-         
-         
-         Bank.setStartTime(11,10);
+         Bank.setStartTime(9,10);
          Bank.setCloseTime(22,10);
          
-         SimpleDateFormat sdf_24 = new SimpleDateFormat("k:m");
-         String date_s_24 = sdf_24.format(Bank.getStartTime());
-         String date_c_24 = sdf_24.format(Bank.getCloseTime());
-         
-         System.out.println("Woring Hours");
+         System.out.println("Working Hours");
          System.out.println(Bank.getHoursOfOperation());
-         System.out.println(date_s_24 + " To " + date_c_24);
-         
          
          String continue_flag;
          do{
-             Scanner in = new Scanner(System.in);
-             Scanner in_2 = new Scanner(System.in);
+             Scanner scan_int = new Scanner(System.in);
+             Scanner scan_line = new Scanner(System.in);
+             Scanner scan_double = new Scanner(System.in);
              String create_customer;
              String first_name;
              String last_name;
-             int year = 1995;
-             int month = 1;
-             int day = 1;
+             int year;
+             int month;
+             int day;
              String phone_number;
              String account_type_str;
              char account_type_char;
              System.out.println("Create a customer? (yes/no)");
-             create_customer = in.nextLine();
+             create_customer = scan_line.nextLine();
              if (create_customer.equals("yes")){
-                  System.out.println("Insert your first name.");
-                  first_name = in.nextLine();                  
-                  System.out.println("Insert your last name.");
-                  last_name = in.nextLine();
-                  System.out.println("Insert your date of birth.(dd/mm/yyyy)");
-                  year = in.nextInt();
-                  month = in.nextInt();
-                  day = in.nextInt();
-                  System.out.println("Insert your phone number.");
-                  phone_number = in.nextLine();
                   
+                 System.out.println("Insert your first name.");
+                  first_name = scan_line.nextLine();                  
+                  System.out.println("Insert your last name.");
+                  last_name = scan_line.nextLine();
+                  System.out.println("Insert your date of birth.(yyyy/mm/dd)");
+                  year = scan_int.nextInt();
+                  month = scan_int.nextInt() - 1;
+                  day = scan_int.nextInt();
+                  System.out.println("Insert your phone number.");
+                  phone_number = scan_line.nextLine();
                   
                   Customer new_customer = new Customer(first_name,last_name, ( new GregorianCalendar(year, month, day).getTime()));
                   new_customer.setPhoneNumber(phone_number);
@@ -120,17 +108,17 @@ public class Teller
                   System.out.println("C : Credit Checking");
                   System.out.println("N : No Account");
                   System.out.println("What account do you want to make?(S/O/I/C/N)");
-                  account_type_str = in.nextLine();
+                  account_type_str = scan_line.nextLine();
                   account_type_char = account_type_str.charAt(0);
                   
                   if (account_type_char !=  'N'){                   
                   
                       System.out.println("\nInput your initial balance");
-                      initial_balance = in.nextDouble();
+                      initial_balance = scan_double.nextDouble();
                       
                       while(initial_balance < 10){
                           System.out.println("\nInitial input cannot be below 10. Input your initial balance");
-                          initial_balance = in.nextDouble();
+                          initial_balance = scan_double.nextDouble();
                           
                         }
                   }
@@ -139,18 +127,22 @@ public class Teller
                       initial_balance = 0;
                       
                     }
-                  Account new_account = new Account(account_type_char,initial_balance);
-                  new_customer.setAccount(new_account);
+                  
+                  new_customer.addAccount(initial_balance,account_type_char);
+                  
+                  System.out.println((Bank.addCustomer(new_customer)) ? "Customer created\n":"Failed to create customer\n");
+                  
+                  System.out.println((Bank.getCustomer(new_customer.getCustomerId()) != null) ? "Customer found\n":"Failed to found customer\n");
                   
                   System.out.println("Here are your account information");
-                  System.out.println("Name          : "+new_customer.getCustomerName());
-                  System.out.println("Date of birth : "+new_customer.getDateOfBirth());
-                  System.out.println("Phone number  : "+new_customer.getPhoneNumber());
-                  System.out.println("Account type  : "+new_customer.getAccount().getAcctType());
-                  System.out.println("Balance       : "+new_customer.getAccount().getBalance());
+                  System.out.println("Name          : "+Bank.getCustomer(new_customer.getCustomerId()).getCustomerName());
+                  System.out.println("Date of birth : "+Bank.getCustomer(new_customer.getCustomerId()).getDateOfBirth());
+                  System.out.println("Phone number  : "+Bank.getCustomer(new_customer.getCustomerId()).getPhoneNumber());
+                  System.out.println("Account type  : "+Bank.getCustomer(new_customer.getCustomerId()).getAccount(account_type_char).getAcctType());
+                  System.out.println("Balance       : "+Bank.getCustomer(new_customer.getCustomerId()).getAccount(account_type_char).getBalance());
                   
                   System.out.println("Continue?(yes/no)");
-                  continue_flag = in_2.nextLine();
+                  continue_flag = scan_line.nextLine();
                   
             }
             
@@ -160,15 +152,5 @@ public class Teller
             }
         }
         while(continue_flag.equals("yes"));
-            
-         // put your code here
-        //Customer c1 = new Customer("Sanadhi","Sutandi");
-        //System.out.print(c1.getCustomerName()+"\n");
-        
-        //Account a1 = new Account();
-        //a1.setBalance(123);
-        
-       // c1.setAccount(a1);
-        //System.out.print(c1.getAccount().getBalance()+"\n");
     }
 }

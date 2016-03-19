@@ -11,20 +11,16 @@ public class Account
     private char acctType;
     private double balance;
     private String id;
+    private Customer account_owner;
 
     /**
      * Constructor for objects of class Account
      */
-    public Account() {
-        // initialise instance variables
-        acctType = 'S';
-        balance = 10.00;
-        
-    }
-
-    public Account(char type, double amount) {
+    public Account(char type, double amount, Customer set_customer) {
         acctType = type;
         balance = amount;
+        account_owner = set_customer;
+        id = Integer.toString(set_customer.getCustomerId()) + Character.toString(type);
         
     }
    
@@ -80,16 +76,6 @@ public class Account
      */
     public void setBalance(double amount) {
         balance = amount;
-    }
-    
-    /**
-     * Method to change id
-     * 
-     * @param acctID
-     */
-    public void setID(String acctId) {
-        
-        id = acctId;
     }
     
     /**

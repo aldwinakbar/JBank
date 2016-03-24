@@ -81,52 +81,27 @@ public class Teller
              int month;
              int day;
              String phone_number;
-             String street_address;
-             String city_address;
-             String postal_code;
-             String email_address;
              String account_type_str;
              char account_type_char;
              System.out.println("Create a customer? (yes/no)");
              create_customer = scan_line.nextLine();
              if (create_customer.equals("yes")){
                   
-                  System.out.println("Insert your first name.");
+                 System.out.println("Insert your first name.");
                   first_name = scan_line.nextLine();                  
                   System.out.println("Insert your last name.");
                   last_name = scan_line.nextLine();
                   System.out.println("Insert your date of birth.(yyyy/mm/dd)");
                   year = scan_int.nextInt();
                   month = scan_int.nextInt() - 1;
-                  day = scan_int.nextInt();                  
-                  Customer new_customer = new Customer(first_name,last_name, ( new GregorianCalendar(year, month, day).getTime()));
-                  
+                  day = scan_int.nextInt();
                   System.out.println("Insert your phone number.");
                   phone_number = scan_line.nextLine();
+                  
+                  Customer new_customer = new Customer(first_name,last_name, ( new GregorianCalendar(year, month, day).getTime()));
                   new_customer.setPhoneNumber(phone_number);
-                  
-                  System.out.println("Insert your street address.");
-                  street_address = scan_line.nextLine();
-                  new_customer.setStreetAddress(street_address);
-                  
-                  System.out.println("Insert your city address.");
-                  city_address = scan_line.nextLine();
-                  new_customer.setCityAddress(city_address);
-                  
-                  System.out.println("Insert your postal code.");
-                  postal_code = scan_line.nextLine();
-                  new_customer.setPostalCode(postal_code);
-                  
-                  System.out.println("Insert your email address.");
-                  email_address = scan_line.nextLine();
-                  while(!(new_customer.setEmail(email_address))){
-                          System.out.println("Your email is invalid. Insert your email address.");
-                          email_address = scan_line.nextLine();
-                          
-                  }
-                  
                  
-                  double initial_balance = 10;
+                  double initial_balance;
                   System.out.println("\nS : Savings");
                   System.out.println("O : Overdraft");
                   System.out.println("I : Investment");
@@ -146,49 +121,26 @@ public class Teller
                           initial_balance = scan_double.nextDouble();
                           
                         }
-                  }            
+                  }
+                  
                   else{
                       initial_balance = 0;
                       
-                  }
-                  
-                  new_customer.addAccount(initial_balance,account_type_char);
+                    }
+                  Account new_account = new Account(account_type_char,initial_balance);
+                  new_customer.setAccount(new_account);
                   
                   System.out.println((Bank.addCustomer(new_customer)) ? "Customer created\n":"Failed to create customer\n");
-                  int counter_customer = 1001;
-                  while (Bank.getCustomer(counter_customer) != null){
-                      System.out.println((Bank.getCustomer(counter_customer) != null) ? "\nCustomer with ID of "+ counter_customer +" found\n":"Failed to found customer\n");
-                      if(Bank.getCustomer(counter_customer) != null){
-                          System.out.println("Here are your account information");
-                          System.out.println("Name          : "+Bank.getCustomer(counter_customer).getCustomerName());
-                          System.out.println("Date of birth : "+Bank.getCustomer(counter_customer).getDateOfBirth());
-                          System.out.println("Phone number  : "+Bank.getCustomer(counter_customer).getPhoneNumber());
-                          System.out.println("Address       : "+Bank.getCustomer(counter_customer).getAddress());
-                          System.out.println("Email Address : "+Bank.getCustomer(counter_customer).getEmail());
-                          account_type_char = 'S';
-                          if (Bank.getCustomer(counter_customer).getAccount(account_type_char) != null){
-                            System.out.println("Account type  : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getAcctType());
-                            System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
-                          }
-                          account_type_char = 'O';
-                          if (Bank.getCustomer(counter_customer).getAccount(account_type_char) != null){
-                            System.out.println("Account type  : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getAcctType());
-                            System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
-                          }
-                          account_type_char = 'I';
-                          if (Bank.getCustomer(counter_customer).getAccount(account_type_char) != null){
-                            System.out.println("Account type  : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getAcctType());
-                            System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
-                          }
-                          account_type_char = 'C';
-                          if (Bank.getCustomer(counter_customer).getAccount(account_type_char) != null){
-                            System.out.println("Account type  : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getAcctType());
-                            System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
-                          }
-                      }
-                      
-                      counter_customer++;
-                  }
+                  
+                  System.out.println((Bank.getCustomer(new_customer.getCustomerId()) != null) ? "Customer found\n":"Failed to found customer\n");
+                  
+                  System.out.println("Here are your account information");
+                  System.out.println("Name          : "+Bank.getCustomer(new_customer.getCustomerId()).getCustomerName());
+                  System.out.println("Date of birth : "+Bank.getCustomer(new_customer.getCustomerId()).getDateOfBirth());
+                  System.out.println("Phone number  : "+Bank.getCustomer(new_customer.getCustomerId()).getPhoneNumber());
+                  System.out.println("Account type  : "+Bank.getCustomer(new_customer.getCustomerId()).getAccount().getAcctType());
+                  System.out.println("Balance       : "+Bank.getCustomer(new_customer.getCustomerId()).getAccount().getBalance());
+                  
                   System.out.println("Continue?(yes/no)");
                   continue_flag = scan_line.nextLine();
                   

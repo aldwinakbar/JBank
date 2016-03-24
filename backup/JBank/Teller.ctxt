@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Teller()
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Teller\n
+comment1.params=days\ rate\ balance\ investment_term
+comment1.target=double\ compoundInterestRate(int,\ double,\ double,\ int)
+comment1.text=\n\ Calculate\ the\ compound\ interest\ rate\ for\ investment\ account\n\ \n\ @param\ \ days,\ rate,\ balance,\ investment_term\n
+comment2.params=days\ rate\ balance
+comment2.target=double\ compoundInterestRate(int,\ double,\ double)
+comment2.text=\n\ Calculate\ the\ compound\ interest\ rate\ for\ savings\ account\n\ \n\ @param\ \ days,\ rate,\ balance\ \ \ \ \ \n
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+comment3.text=\n\ Main\ method\ in\ Teller\ class,\ as\ the\ entry\ point\ of\ the\ JBank\ program\n\ \n\ @param\ \ args\ \ \ \ \ \n
+numComments=4

@@ -42,10 +42,10 @@ public class Bank
         
     }
 
-    public static boolean addCustomer(Customer customer_titit){
+    public static boolean addCustomer(Customer customer_input){
         for (int i = 0; i < MAX_NUM_OF_CUSTOMERS; i++){
             if (customer[i] == null){
-                customer[i] = customer_titit;
+                customer[i] = customer_input;
                 return true;
             }
         }
@@ -55,12 +55,11 @@ public class Bank
         
     public static Customer getCustomer(int custID){ 
         for (int i = 0; i < MAX_NUM_OF_CUSTOMERS; i++){
-            if(customer[i] != null){
-                if (customer[i].getCustomerId()== custID){
-                    return customer[i];
-                }
+            if (customer[i].getCustomerId()== custID){
+                return customer[i];
             }
         }
+        
         return null;
     }
     

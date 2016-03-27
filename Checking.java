@@ -7,7 +7,7 @@
  */
 public abstract class Checking extends Account
 {
-    // instance variables - replace the example below with your own
+    
     protected double monthlyFee;
     
     public Checking(Customer savings_customer, double amount)

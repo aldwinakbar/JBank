@@ -1,14 +1,11 @@
-import java.math.*;
 /**
  * Write a description of class Savings here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Savings extends Account
-{
-    // instance variables - replace the example below with your own
-    private int x;
+public class Savings extends Account{
+    
     protected double interestEarned;
 
     /**
@@ -21,15 +18,13 @@ public class Savings extends Account
     }
 
     public double getInterestEarned() {
-    
         return interestEarned ;
     }    
     
     public void addDailyInterest(int days){
-        double days_to_years = days/365;
         double r = 0.03;
-        double f = balance * Math.pow(1 + (r / 365), 365*days);
-        interestEarned = f- balance;
+        double f = balance * Math.pow(1 + (r / 365), days);
+        interestEarned = f - balance;
         balance = f;
     }
     

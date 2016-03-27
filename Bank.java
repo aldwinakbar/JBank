@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class Bank
 {
-    // instance variables - replace the example below with your own
     private static double creditInterestRate;
     private static Date closeTime;
     private static double investmentInterestRate;
@@ -32,14 +31,6 @@ public class Bank
         System.out.println("Input Maximum Customer : ");
         MAX_NUM_OF_CUSTOMERS = in.nextInt();   
         customer = new Customer[MAX_NUM_OF_CUSTOMERS];
-    }
-
-    /**
-     * Constructor for objects of class Bank
-     */
-    private Bank() {
-        // initialise instance variables
-        
     }
 
     public static boolean addCustomer(Customer customer_titit){
@@ -88,21 +79,9 @@ public class Bank
         return lastCustID;
     }
     
-    /*
-    public static int getMaxCustomers() {
-        return 0;
-    }
-    */
-   
     public static int getNumOfCurrentCustomers(){
         return numOfCurrentCustomer;
     }
-    
-    /*
-    public static String getName() {
-        return "";
-    }
-    */
    
     public static Date getStartTime(){
         

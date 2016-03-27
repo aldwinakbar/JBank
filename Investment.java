@@ -32,6 +32,17 @@ public final class Investment extends Savings
         startDate = s.getTime();
         s.add(Calendar.MONTH, term);
         endDate = s.getTime();
+        
+        if (term <= 6) {
+            interestRate = 0.05;
+        }
+        
+        else if (term > 6 && term <= 12){
+            interestRate = 0.06;
+        }
+        else {
+            interestRate = 0.07;
+        }
     }
     
      public boolean withdraw(double amount) {
@@ -39,12 +50,22 @@ public final class Investment extends Savings
         double balance_temp = balance;
         double withdraw_result = balance_temp-amount;
         Calendar s = new GregorianCalendar();
-        if(withdraw_result >=0){
+        
+        if(withdraw_result >=0 && s.getInstance().after(endDate)){
             balance = withdraw_result;
             return true;
         }
         else if (s.getInstance().before(endDate)){
-            return false;            
+            double penalty_amount = balance * 0.2;
+            double temp_penalty_balance = balance - penalty_amount;
+            temp_penalty_balance -= amount;
+            if (temp_penalty_balance >= 0){
+                balance = temp_penalty_balance;
+                return true;
+            }
+            else {
+                return false;  
+            }
         }
         else{
             return false;
@@ -53,10 +74,10 @@ public final class Investment extends Savings
 
     
     public void addDailyInterest(int days){
-        double days_to_years = days/365;
+        
         double r = interestRate;
-        double f = balance * Math.pow(1 + (r / 365), 365*days);
-        interestEarned = f- balance;
+        double f = balance * Math.pow(1 + (r / 365), days);
+        interestEarned = f - balance;
         balance = f;
     }
 }

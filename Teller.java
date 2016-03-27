@@ -20,41 +20,7 @@ public class Teller
     {
         
     }
-    
-    /**
-     * Calculate the compound interest rate for investment account
-     * 
-     * @param  days, rate, balance, investment_term
-     */
-    
-    private static double compoundInterestRate(int days, double rate, double balance, int investment_term){
         
-        if (investment_term > 0 && investment_term <= 6)    rate = 0.05;
-        else if (investment_term > 6 && investment_term <= 12 ) rate = 0.06;
-        else if (investment_term > 12)  rate = 0.07;
-        
-        return compoundInterestRate(days, rate, balance);
-    }
-    
-    /**
-     * Calculate the compound interest rate for savings account
-     * 
-     * @param  days, rate, balance     
-     */
-    
-    private static double compoundInterestRate(int days, double rate, double balance){
-                
-        BigDecimal bal = new BigDecimal(balance);
-        BigDecimal n = new BigDecimal(360.0); 
-        BigDecimal t = new BigDecimal(days);
-        BigDecimal r = new BigDecimal(rate);
-        BigDecimal one = new BigDecimal(1); 
-        BigDecimal f1 = r.divide(n, BigDecimal.ROUND_HALF_EVEN).add(one);
-        BigDecimal f2 = bal.multiply(f1);
-        BigDecimal f3 = n.multiply(t);
-        return Math.pow(f2.doubleValue(), f3.doubleValue());
-    }
-    
     /**
      * Main method in Teller class, as the entry point of the JBank program
      * 
@@ -69,10 +35,11 @@ public class Teller
           int month = 11 - 1;
           int day = 20;
           Customer new_customer = new Customer(first_name,last_name, ( new GregorianCalendar(year, month, day).getTime()));
+          
           Savings new_savings_account = new Savings(new_customer,500);
           new_savings_account.addDailyInterest(280);
           
-          Investment new_investment_account = new Investment(new_customer, 1000, 12);
+          Investment new_investment_account = new Investment(new_customer, 1000, 6);
           new_investment_account.addDailyInterest(280);
           
           System.out.println("Savings account after 280 days");

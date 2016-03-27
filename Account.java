@@ -9,21 +9,23 @@ public abstract class Account
 {
     // instance variables - replace the example below with your own
     // private char acctType;
-    private double balance;
-    private String id;
+    protected double balance;
+    protected String id;
     private Customer account_owner;
 
     /**
      * Constructor for objects of class Account
-     *
-    public Account(char type, double amount, Customer set_customer) {
-        acctType = type;
+     */
+    public Account(double amount) {
         balance = amount;
-        account_owner = set_customer;
-        id = Integer.toString(set_customer.getCustomerId()) + Character.toString(type);
-        
-    }*/
-   
+    }
+       
+    public abstract boolean withdraw(double amount);
+    
+    public String toString(){
+        return id;        
+    }
+    
     /**
      * Method to deposit a value to balance. If deposit value above zero, it'll returns true. else it'll return false.
      * 
@@ -105,9 +107,5 @@ public abstract class Account
             return false;
         }
     }*/
-    public abstract double withdraw(double amount);
-    
-    public String toString(){
-        return id;        
-    }
+
 }

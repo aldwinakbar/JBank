@@ -63,6 +63,25 @@ public class Teller
     
      public static void main(String[] args) {
          
+          String first_name = "Aldwin";
+          String last_name = "Hermanudin";
+          int year = 1995;
+          int month = 11 - 1;
+          int day = 20;
+          Customer new_customer = new Customer(first_name,last_name, ( new GregorianCalendar(year, month, day).getTime()));
+          Savings new_savings_account = new Savings(new_customer,500);
+          new_savings_account.addDailyInterest(280);
+          
+          Investment new_investment_account = new Investment(new_customer, 1000, 12);
+          new_investment_account.addDailyInterest(280);
+          
+          System.out.println("Savings account after 280 days");
+          System.out.println(new_savings_account.getBalance());
+          
+          System.out.println("Savings investment after 280 days");
+          System.out.println(new_investment_account.getBalance());
+         //Account test = new Account();
+         /*
          Bank.setStartTime(9,10);
          Bank.setCloseTime(22,10);
          
@@ -200,5 +219,6 @@ public class Teller
             }
         }
         while(continue_flag.equals("yes"));
-    }
+        */
+     }
 }

@@ -61,27 +61,44 @@ public class Customer
      * @return account object
      */
     public Account getAccount(char type) {
-        for (int i = 0; i < accounts.length; i++){
-                if(accounts[i] != null){
-                    if (accounts[i].getId().endsWith(Character.toString(type))) {
-                        return accounts[i];
+        // modify(remove) the multiple elseif by using OR statements in if
+                
+            for (int i = 0; i < accounts.length; i++){
+                    if(accounts[i] != null){
+                        if (type == 'S' && accounts[i] instanceof Savings)  return accounts[i];
+                        else if (type == 'O' && accounts[i] instanceof OverDraftProtection)  return accounts[i];
+                        else if (type == 'I' && accounts[i] instanceof Investment)  return accounts[i];
+                        else if (type == 'C' && accounts[i] instanceof LineOfCredit)  return accounts[i];
                     }
-                }
-        }
+            }
         return null;
     }
 
     
     public boolean removeAccount(char type) {
-        for (int i = 0; i < accounts.length; i++){
-                if(accounts[i] != null){
-                    if (accounts[i].getId().endsWith(Character.toString(type))) {
-                        accounts[i] = null;
-                        numberOfCurrentAccounts--;
-                        return true;
+            
+        // modify(remove) the multiple elseif by using OR statements in if
+            
+            for (int i = 0; i < accounts.length; i++){
+                    if(accounts[i] != null){
+                        if (type == 'S' && accounts[i] instanceof Savings)  {
+                            accounts[i] = null;
+                            return true;
+                        }
+                        else if (type == 'O' && accounts[i] instanceof OverDraftProtection){  
+                            accounts[i] = null;
+                            return true;
+                        }
+                        else if (type == 'I' && accounts[i] instanceof Investment){  
+                            accounts[i] = null;
+                            return true;
+                        }
+                        else if (type == 'C' && accounts[i] instanceof LineOfCredit){  
+                            accounts[i] = null;
+                            return true;
+                        }
                     }
-                }
-        }
+            }
         return false;
     }
     
@@ -160,16 +177,18 @@ public class Customer
      * 
      * @param account_input
      */
-    public boolean addAccount(double balance, char type){
+    public boolean addAccount(Account type){
         boolean accountAdded = false;
         if (numberOfCurrentAccounts < accounts.length ){
             for (int i = 0; i < accounts.length; i++){
                 if(accounts[i] != null){
-                    if (accounts[i].getId().endsWith(Character.toString(type))) {break;}
+                    if ( (accounts[i].getClass().equals(type.getClass())) ) {
+                            break;
+                        }
                 }
                 
                 else if (accounts[i] == null){
-                    accounts[i] = new Account(type,balance,this);
+                    accounts[i] = type; 
                     accountAdded = true;
                     numberOfCurrentAccounts++;
                 }

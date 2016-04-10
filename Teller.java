@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.*;
 import java.text.SimpleDateFormat;
 import java.math.*;
+import java.awt.*;  // Using Frame class in package java.awt
 
 /**
  * The main class of the JBank program. 
@@ -17,10 +18,9 @@ public class Teller
      * Constructor for objects of class Teller
      */
     public Teller()
-    {
-        
+    { 
     }
-        
+    
     /**
      * Main method in Teller class, as the entry point of the JBank program
      * 
@@ -28,6 +28,8 @@ public class Teller
      */
     
      public static void main(String[] args) {
+         
+         
          
           String first_name = "Aldwin";
           String last_name = "Hermanudin";
@@ -47,6 +49,7 @@ public class Teller
           
           System.out.println("Savings investment after 280 days");
           System.out.println(new_investment_account.getBalance());
+          
          //Account test = new Account();
          /*
          Bank.setStartTime(9,10);

@@ -18,7 +18,7 @@ public class OverDraftProtection extends Checking
     public OverDraftProtection(Customer savings_customer, double amount, Account savings)
     {
         super(savings_customer, amount); // initialise instance variables
-        savingsAccount = savingsAccount;
+        savingsAccount = savings;
     }
     
     protected void feeAssesment(){
@@ -27,7 +27,7 @@ public class OverDraftProtection extends Checking
         
     }
     
-    public boolean withdraw(double amount) throws AmountOverDrawnException{
+    public void withdraw(double amount) throws AmountOverDrawnException{
         if (amount > balance + savingsAccount.getBalance() - 10){
             throw new AmountOverDrawnException(this);  
             //return false;
@@ -37,12 +37,10 @@ public class OverDraftProtection extends Checking
             balance = 0;
             savingsAccount.withdraw(amount - balance);
             feeAssesment();
-            return true;
         }
         
         else {
             balance = balance - amount;
-            return true;
         }
     }
 }

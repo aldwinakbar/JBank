@@ -20,7 +20,7 @@ public abstract class Account implements Serializable
         balance = amount;
     }
        
-    public abstract boolean withdraw(double amount) throws AmountOverDrawnException;
+    public abstract void withdraw(double amount) throws AmountOverDrawnException;
     
     public String toString(){
         return id;        

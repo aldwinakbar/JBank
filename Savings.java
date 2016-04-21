@@ -28,13 +28,12 @@ public class Savings extends Account{
         balance = f;
     }
     
-    public boolean withdraw(double amount) throws AmountOverDrawnException {
+    public void withdraw(double amount) throws AmountOverDrawnException {
     
         double balance_temp = balance;
         double withdraw_result = balance_temp-amount;
         if(withdraw_result >=0){
             balance = withdraw_result;
-            return true;
         }
         else{
             throw new AmountOverDrawnException(this);

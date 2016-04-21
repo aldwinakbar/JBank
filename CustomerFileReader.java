@@ -28,13 +28,14 @@ public class CustomerFileReader
     
     public SortedSet<Customer> readCustomers(){
         
-        SortedSet<Customer> customersArraylist = new TreeSet();
+        SortedSet customersArraylist = new TreeSet<Customer>();
+        SortedSet<Customer> customersOutputlist = new TreeSet<Customer>();
         try
         {
-            fileInputStream = new FileInputStream("customer_data.txt");
+            fileInputStream = new FileInputStream("customer_data.jbank");
             objectInputStream = new ObjectInputStream(fileInputStream);
             
-            customersArraylist = (SortedSet<Customer>) objectInputStream.readObject();
+            customersArraylist = (SortedSet) objectInputStream.readObject();
             objectInputStream.close();
             fileInputStream.close();
 
@@ -46,8 +47,15 @@ public class CustomerFileReader
              c.printStackTrace();
              return null;
           }     
-          
-        return customersArraylist;
+        
+        //Deep-copy
+        Iterator it = customersArraylist.iterator();
+        while (it.hasNext()) {
+            Customer element = (Customer) it.next();
+            customersOutputlist.add(element);
+        }
+            
+        return customersOutputlist;
     }
 
 }

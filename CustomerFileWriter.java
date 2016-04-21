@@ -11,7 +11,6 @@ import java.util.*;
 public class CustomerFileWriter
 {
     // instance variables - replace the example below with your own
-    private File objectFile;
     private FileOutputStream fileOutputStream;
     private ObjectOutputStream objectOutputStream;
     
@@ -20,7 +19,7 @@ public class CustomerFileWriter
       try {
 
          // create a new file with an ObjectOutputStream
-         fileOutputStream = new FileOutputStream("customer_data.txt");
+         fileOutputStream = new FileOutputStream("customer_data.jbank");
          objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
          // write something in the file

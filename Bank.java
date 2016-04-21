@@ -24,7 +24,7 @@ public class Bank
     public static final String  BANK_ADDRESS = "1234 JavaStreet, AnyCity, ThisState, 34567";
     public static final int MAX_NUM_OF_CUSTOMERS;
     public static final String  BANK_NAME = "JBANK";
-    private static SortedSet<Customer> customer = new TreeSet(); 
+    private static SortedSet<Customer> customer = new TreeSet<Customer>(); 
     
     static{
         Scanner in = new Scanner(System.in);
@@ -58,7 +58,7 @@ public class Bank
          if(element.getCustomerId() == custID){
 			    return element;
 			 }
-      }
+         }
         return null;
     }
     

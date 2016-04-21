@@ -83,12 +83,13 @@ public class Teller
              catch (AccountTypeAlreadyExistsException e){
                 System.out.println(e.getMessage());
             }
-          
+  
+                    
                   
         CustomerFileWriter file_write = new CustomerFileWriter();
-        file_write.saveCustomer(Bank.getCustomerData());
-        */
-        CustomerFileReader file_reader = new CustomerFileReader();
+        file_write.saveCustomer(Bank.getCustomerData());*/
+        
+         CustomerFileReader file_reader = new CustomerFileReader();
         Bank.setCustomerData(file_reader.readCustomers());  
         
         

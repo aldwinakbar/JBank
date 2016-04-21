@@ -48,7 +48,7 @@ public class LineOfCredit extends Checking
         
     }
     
-    public boolean withdraw(double amount) throws AmountOverDrawnException{
+    public void withdraw(double amount) throws AmountOverDrawnException{
         if (amount > balance + creditBalance){
             throw new AmountOverDrawnException(this);
         }
@@ -56,12 +56,10 @@ public class LineOfCredit extends Checking
         else if ( amount > balance ){
             balance = 0;
             creditBalance -= (amount - balance);
-            return true;
         }
         
         else {
             balance = balance - amount;
-            return true;
         }
     }
 }

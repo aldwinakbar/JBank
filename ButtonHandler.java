@@ -34,9 +34,7 @@ public class ButtonHandler implements ActionListener {
             catch (AccountTypeNotFoundException e){
                 transactionGUI.appendToInfoArea(customerField.getText()+ " " + e.getMessage() +"\n");
             }
-            
-            // transactionGUI.appendToInfoArea(customerField.getText() + " amount below a certain value " +"\n");
-            
+                   
         }
         
         else if(actionType.equals("total")){

@@ -46,7 +46,7 @@ public final class Investment extends Savings
     }
     
     @Override
-     public boolean withdraw(double amount) throws AmountOverDrawnException{
+     public void withdraw(double amount) throws AmountOverDrawnException{
     
         double balance_temp = balance;
         double withdraw_result = balance_temp-amount;
@@ -54,7 +54,6 @@ public final class Investment extends Savings
         
         if(withdraw_result >=0 && s.getInstance().after(endDate)){
             balance = withdraw_result;
-            return true;
         }
         else if (s.getInstance().before(endDate)){
             double penalty_amount = balance * 0.2;
@@ -62,7 +61,6 @@ public final class Investment extends Savings
             temp_penalty_balance -= amount;
             if (temp_penalty_balance >= 0){
                 balance = temp_penalty_balance;
-                return true;
             }
             else {
                 throw new AmountOverDrawnException(this);

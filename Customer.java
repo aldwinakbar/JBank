@@ -3,6 +3,7 @@ import java.util.regex.Pattern;
 import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.io.Serializable;
 
 /**
  * Customer class to store customer information. Using regex.Matcher and regex.Pattern library
@@ -10,7 +11,7 @@ import java.text.SimpleDateFormat;
  * @author Aldwin Hermanudin 
  * @version 27/02/2016
  */
-public class Customer
+public class Customer implements Comparable<Customer>, Serializable
 {
     // instance variables - replace the example below with your own
     private Account[] accounts = new Account[4];
@@ -60,7 +61,7 @@ public class Customer
      * 
      * @return account object
      */
-    public Account getAccount(char type) {
+    public Account getAccount(char type) throws AccountTypeNotFoundException{
         // modify(remove) the multiple elseif by using OR statements in if
                 
             for (int i = 0; i < accounts.length; i++){
@@ -71,7 +72,7 @@ public class Customer
                         else if (type == 'C' && accounts[i] instanceof LineOfCredit)  return accounts[i];
                     }
             }
-        return null;
+         throw new AccountTypeNotFoundException(type);
     }
 
     
@@ -83,18 +84,22 @@ public class Customer
                     if(accounts[i] != null){
                         if (type == 'S' && accounts[i] instanceof Savings)  {
                             accounts[i] = null;
+                            numberOfCurrentAccounts--;
                             return true;
                         }
                         else if (type == 'O' && accounts[i] instanceof OverDraftProtection){  
                             accounts[i] = null;
+                            numberOfCurrentAccounts--;
                             return true;
                         }
                         else if (type == 'I' && accounts[i] instanceof Investment){  
                             accounts[i] = null;
+                            numberOfCurrentAccounts--;
                             return true;
                         }
                         else if (type == 'C' && accounts[i] instanceof LineOfCredit){  
                             accounts[i] = null;
+                            numberOfCurrentAccounts--;
                             return true;
                         }
                     }
@@ -177,7 +182,7 @@ public class Customer
      * 
      * @param account_input
      */
-    public boolean addAccount(Account type){
+    public boolean addAccount(Account type) throws AccountTypeAlreadyExistsException{
         boolean accountAdded = false;
         if (numberOfCurrentAccounts < accounts.length ){
             for (int i = 0; i < accounts.length; i++){
@@ -191,10 +196,17 @@ public class Customer
                     accounts[i] = type; 
                     accountAdded = true;
                     numberOfCurrentAccounts++;
+                    break;
                 }
             }
         }
-        return accountAdded;     
+        
+        if (accountAdded){
+            return accountAdded;
+        }
+        else {
+             throw new AccountTypeAlreadyExistsException(type);
+        }  
     }
     
     /**
@@ -226,6 +238,12 @@ public class Customer
     public void setPostalCode(String zip_code) {
         zipOrPostalCode = zip_code;
     }
-    
-    
+
+    @Override
+    public int compareTo(Customer o) {
+	
+	 //ascending order
+	 return this.custId - o.getCustomerId();
+	 
+	 }
 }

@@ -1,11 +1,13 @@
 
+import java.io.Serializable;
+
 /**
  * Store every information of each account
  * 
  * @author Aldwin Hermanudin 
  * @version 27/02/2016
  */
-public abstract class Account
+public abstract class Account implements Serializable
 {
     protected double balance;
     protected String id;
@@ -18,7 +20,7 @@ public abstract class Account
         balance = amount;
     }
        
-    public abstract boolean withdraw(double amount);
+    public abstract boolean withdraw(double amount) throws AmountOverDrawnException;
     
     public String toString(){
         return id;        

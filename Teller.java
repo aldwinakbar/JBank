@@ -29,8 +29,10 @@ public class Teller
     
      public static void main(String[] args) {
          
-         
-         
+         ATMGUI ATMGuiLayout = new ATMGUI();
+            int counter_customer = 1001;
+          char account_type_char;
+        /*
           String first_name = "Aldwin";
           String last_name = "Hermanudin";
           int year = 1995;
@@ -44,14 +46,98 @@ public class Teller
           Investment new_investment_account = new Investment(new_customer, 1000, 6);
           new_investment_account.addDailyInterest(280);
           
+          OverDraftProtection new_odf_account = new OverDraftProtection(new_customer,500, new_savings_account);
+          LineOfCredit new_loc_account = new LineOfCredit(new_customer, 500, 100);
+          
           System.out.println("Savings account after 280 days");
           System.out.println(new_savings_account.getBalance());
           
           System.out.println("Savings investment after 280 days");
           System.out.println(new_investment_account.getBalance());
           
+          System.out.println((Bank.addCustomer(new_customer)) ? "Customer created\n":"Failed to create customer\n");
+       
+          try {
+              System.out.println( " Add Savings " + new_customer.addAccount(new_savings_account));}
+              catch (AccountTypeAlreadyExistsException e){
+                System.out.println(e.getMessage());
+            }
+          try {    
+              System.out.println( " Add Investment " + new_customer.addAccount(new_investment_account));}
+              catch (AccountTypeAlreadyExistsException e){
+                System.out.println(e.getMessage());
+            }
+          try {    
+              System.out.println( " Add Investment " + new_customer.addAccount(new_investment_account));}
+              catch (AccountTypeAlreadyExistsException e){
+                System.out.println(e.getMessage());
+            }
+          try {    
+              System.out.println( " Add ODF " + new_customer.addAccount(new_odf_account));}
+              catch (AccountTypeAlreadyExistsException e){
+                System.out.println(e.getMessage());
+            }
+          
+          try {    
+              System.out.println( " Add LOC " + new_customer.addAccount(new_loc_account)); }  
+             catch (AccountTypeAlreadyExistsException e){
+                System.out.println(e.getMessage());
+            }
+          
+                  
+        CustomerFileWriter file_write = new CustomerFileWriter();
+        file_write.saveCustomer(Bank.getCustomerData());
+        */
+        CustomerFileReader file_reader = new CustomerFileReader();
+        Bank.setCustomerData(file_reader.readCustomers());  
+        
+        
+          if(Bank.getCustomer(counter_customer) != null){
+                          System.out.println("Here are your account information");
+                          System.out.println("Name          : "+Bank.getCustomer(counter_customer).getCustomerName());
+                          System.out.println("Date of birth : "+Bank.getCustomer(counter_customer).getDateOfBirth());
+                          System.out.println("Phone number  : "+Bank.getCustomer(counter_customer).getPhoneNumber());
+                          System.out.println("Address       : "+Bank.getCustomer(counter_customer).getAddress());
+                          System.out.println("Email Address : "+Bank.getCustomer(counter_customer).getEmail());
+                          account_type_char = 'S';
+                          try{
+                                System.out.println("Account type  : Savings");
+                                System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
+                          }
+                          
+                          catch (AccountTypeNotFoundException e){
+                              System.out.println(e.getMessage());
+                          }
+                          account_type_char = 'O';
+                          try{
+                              System.out.println("Account type  : OverDraft");
+                              System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
+                          }
+                          catch (AccountTypeNotFoundException e){
+                              System.out.println(e.getMessage());
+                          }
+                          account_type_char = 'I';
+                          try{
+                              System.out.println("Account type  : Investment");
+                              System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
+                          }
+                          catch (AccountTypeNotFoundException e){
+                              System.out.println(e.getMessage());
+                          }
+                          account_type_char = 'C';
+                          try{
+                              System.out.println("Account type  : Credit");
+                              System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
+                          }
+                          catch (AccountTypeNotFoundException e){
+                              System.out.println(e.getMessage());
+                          }
+                          
+          }
+         
+          
          //Account test = new Account();
-         /*
+        /*
          Bank.setStartTime(9,10);
          Bank.setCloseTime(22,10);
          
@@ -125,7 +211,7 @@ public class Teller
                   account_type_str = scan_line.nextLine();
                   account_type_char = account_type_str.charAt(0);
                   
-                  if (account_type_char !=  'N'){                   
+                  if (account_type_char ==  'S'){                   
                   
                       System.out.println("\nInput your initial balance");
                       initial_balance = scan_double.nextDouble();
@@ -135,13 +221,14 @@ public class Teller
                           initial_balance = scan_double.nextDouble();
                           
                         }
+                        
+                       Savings customer_savings_acc = new Savings(new_customer, initial_balance );
+                  System.out.println( " Add Savings " + new_customer.addAccount(new_savings_account));
                   }            
                   else{
                       initial_balance = 0;
                       
                   }
-                  
-                  new_customer.addAccount(initial_balance,account_type_char);
                   
                   System.out.println((Bank.addCustomer(new_customer)) ? "Customer created\n":"Failed to create customer\n");
                   int counter_customer = 1001;
@@ -156,22 +243,22 @@ public class Teller
                           System.out.println("Email Address : "+Bank.getCustomer(counter_customer).getEmail());
                           account_type_char = 'S';
                           if (Bank.getCustomer(counter_customer).getAccount(account_type_char) != null){
-                            System.out.println("Account type  : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getAcctType());
+                            System.out.println("Account type  : Savings");
                             System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
                           }
                           account_type_char = 'O';
                           if (Bank.getCustomer(counter_customer).getAccount(account_type_char) != null){
-                            System.out.println("Account type  : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getAcctType());
+                            System.out.println("Account type  : OverDraft");
                             System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
                           }
                           account_type_char = 'I';
                           if (Bank.getCustomer(counter_customer).getAccount(account_type_char) != null){
-                            System.out.println("Account type  : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getAcctType());
+                            System.out.println("Account type  : Investment");
                             System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
                           }
                           account_type_char = 'C';
                           if (Bank.getCustomer(counter_customer).getAccount(account_type_char) != null){
-                            System.out.println("Account type  : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getAcctType());
+                            System.out.println("Account type  : Credit");
                             System.out.println("Balance       : "+Bank.getCustomer(counter_customer).getAccount(account_type_char).getBalance());
                           }
                       }

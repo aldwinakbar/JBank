@@ -28,7 +28,7 @@ public class Savings extends Account{
         balance = f;
     }
     
-    public boolean withdraw(double amount) {
+    public boolean withdraw(double amount) throws AmountOverDrawnException {
     
         double balance_temp = balance;
         double withdraw_result = balance_temp-amount;
@@ -37,7 +37,8 @@ public class Savings extends Account{
             return true;
         }
         else{
-            return false;
+            throw new AmountOverDrawnException(this);
+           // return false;
         }
     }
 }

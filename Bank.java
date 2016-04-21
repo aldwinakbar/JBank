@@ -24,34 +24,41 @@ public class Bank
     public static final String  BANK_ADDRESS = "1234 JavaStreet, AnyCity, ThisState, 34567";
     public static final int MAX_NUM_OF_CUSTOMERS;
     public static final String  BANK_NAME = "JBANK";
-    private static Customer[] customer; 
+    private static SortedSet<Customer> customer = new TreeSet(); 
     
     static{
         Scanner in = new Scanner(System.in);
         System.out.println("Input Maximum Customer : ");
-        MAX_NUM_OF_CUSTOMERS = in.nextInt();   
-        customer = new Customer[MAX_NUM_OF_CUSTOMERS];
+        MAX_NUM_OF_CUSTOMERS = in.nextInt();
     }
 
-    public static boolean addCustomer(Customer customer_titit){
-        for (int i = 0; i < MAX_NUM_OF_CUSTOMERS; i++){
-            if (customer[i] == null){
-                customer[i] = customer_titit;
-                return true;
-            }
-        }
+    public static void setCustomerData(SortedSet<Customer> customer_data){
+        customer = customer_data;
+    }
+    
+    public static SortedSet<Customer> getCustomerData(){
         
-        return false;
+        return customer;
+    }
+    
+    public static boolean addCustomer(Customer customer_new){
+        if (numOfCurrentCustomer < MAX_NUM_OF_CUSTOMERS){
+            customer.add(customer_new);  
+            return true;
+        }
+        else {
+            return false;
+        }
     } 
         
     public static Customer getCustomer(int custID){ 
-        for (int i = 0; i < MAX_NUM_OF_CUSTOMERS; i++){
-            if(customer[i] != null){
-                if (customer[i].getCustomerId()== custID){
-                    return customer[i];
-                }
-            }
-        }
+        Iterator it = customer.iterator();
+        while (it.hasNext()) {
+         Customer element = (Customer) it.next();
+         if(element.getCustomerId() == custID){
+			    return element;
+			 }
+      }
         return null;
     }
     

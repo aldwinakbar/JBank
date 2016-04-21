@@ -45,7 +45,8 @@ public final class Investment extends Savings
         }
     }
     
-     public boolean withdraw(double amount) {
+    @Override
+     public boolean withdraw(double amount) throws AmountOverDrawnException{
     
         double balance_temp = balance;
         double withdraw_result = balance_temp-amount;
@@ -64,11 +65,11 @@ public final class Investment extends Savings
                 return true;
             }
             else {
-                return false;  
+                throw new AmountOverDrawnException(this);
             }
         }
         else{
-            return false;
+            throw new AmountOverDrawnException(this);
         }
     }
 

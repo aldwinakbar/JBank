@@ -52,6 +52,7 @@ public class Bank
     } 
         
     public static Customer getCustomer(int custID){ 
+        
         Iterator it = customer.iterator();
         while (it.hasNext()) {
          Customer element = (Customer) it.next();

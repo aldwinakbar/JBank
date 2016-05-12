@@ -56,6 +56,18 @@ public class Customer implements Comparable<Customer>, Serializable
         return streetAddress+","+cityAddress+","+zipOrPostalCode;
     }
     
+    public String getstreetAddress() {
+        return streetAddress ;
+    }
+    
+    public String getcityAddress() {
+        return cityAddress ;
+    }
+    
+    public String getzipOrPostalCode() {
+        return zipOrPostalCode;
+    }
+    
     /**
      * Method to get account data of the customer
      * 
@@ -138,6 +150,14 @@ public class Customer implements Comparable<Customer>, Serializable
      */
     public String getCustomerName() {
         return lastName+","+firstName;
+    }
+    
+     public String getCustomerFirstName() {
+        return firstName;
+    }
+    
+     public String getCustomerLastName() {
+        return lastName;
     }
     
     /**

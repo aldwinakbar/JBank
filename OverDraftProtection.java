@@ -8,7 +8,6 @@
 public class OverDraftProtection extends Checking
 {
     // instance variables - replace the example below with your own
-    private int x;
     private Account savingsAccount;
     private double fee = 3;
     

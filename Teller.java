@@ -28,11 +28,19 @@ public class Teller
      */
     
      public static void main(String[] args) {
+         Bank.setStartTime(9,10);
+         Bank.setCloseTime(22,10);
          
+         System.out.println("Working Hours");
+         System.out.println(Bank.getHoursOfOperation());
+         TellerGUI TellerLayout = new TellerGUI();
          ATMGUI ATMGuiLayout = new ATMGUI();
-            int counter_customer = 1001;
+         
+           /*
+         int counter_customer = 1001;
           char account_type_char;
-        /*
+        
+         
           String first_name = "Aldwin";
           String last_name = "Hermanudin";
           int year = 1995;
@@ -78,18 +86,21 @@ public class Teller
                 System.out.println(e.getMessage());
             }
           
+            
           try {    
               System.out.println( " Add LOC " + new_customer.addAccount(new_loc_account)); }  
              catch (AccountTypeAlreadyExistsException e){
                 System.out.println(e.getMessage());
             }
-  
+            
                     
                   
         CustomerFileWriter file_write = new CustomerFileWriter();
-        file_write.saveCustomer(Bank.getCustomerData());*/
+        file_write.saveCustomer(Bank.getCustomerData());
         
-         CustomerFileReader file_reader = new CustomerFileReader();
+     
+        
+        CustomerFileReader file_reader = new CustomerFileReader();
         Bank.setCustomerData(file_reader.readCustomers());  
         
         
@@ -136,7 +147,7 @@ public class Teller
                           
           }
          
-          
+          */
          //Account test = new Account();
         /*
          Bank.setStartTime(9,10);

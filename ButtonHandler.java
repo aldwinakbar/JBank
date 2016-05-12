@@ -34,6 +34,10 @@ public class ButtonHandler implements ActionListener {
             catch (AccountTypeNotFoundException e){
                 transactionGUI.appendToInfoArea(customerField.getText()+ " " + e.getMessage() +"\n");
             }
+            
+            catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
                    
         }
         
@@ -46,6 +50,11 @@ public class ButtonHandler implements ActionListener {
                 JOptionPane.showMessageDialog(null, customerField.getText()+ " " + e.getMessage() );
        
             }
+             catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+                   
+            
         }
         
         
@@ -61,6 +70,10 @@ public class ButtonHandler implements ActionListener {
              catch (AccountTypeNotFoundException e){
                 transactionGUI.appendToInfoArea(customerField.getText() + " " + e.getMessage() +"\n");
             }            
+             catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+                   
         }
     }
 }

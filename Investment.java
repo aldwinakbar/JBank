@@ -3,11 +3,12 @@ import java.util.Calendar;
 import java.util.*;
 
 /**
- * Write a description of class Investment here.
+ * An Account class for Investment account
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Aldwin Hermanudin 
+ * @version 13.5.2016
  */
+
 public final class Investment extends Savings
 {
     // instance variables - replace the example below with your own

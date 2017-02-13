@@ -4,4 +4,5 @@ comment0.target=CustomerFileReader()
 comment0.text=\n\ Constructor\ for\ objects\ of\ class\ CustomerFileReader\n
 comment1.params=
 comment1.target=java.util.SortedSet\ readCustomers()
+comment1.text=\n\ Method\ readCustomers\ to\ read\ the\ file\ of\ the\ binary\ data\ of\ the\ SortedSet\ Customer\ object\n\n\ @return\ The\ return\ value\ is\ a\ sortedset\ object,\ or\ null\ if\ failed\n
 numComments=2

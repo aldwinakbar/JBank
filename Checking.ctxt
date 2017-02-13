@@ -1,10 +1,14 @@
 #BlueJ class context
 comment0.params=savings_customer\ amount
 comment0.target=Checking(Customer,\ double)
+comment0.text=\n\ Checking\ Constructor\n\n\ @param\ savings_customer\ A\ parameter\ of\ the\ customer\ savings\ account.\n\ @param\ amount\ A\ parameter\ of\ the\ initial\ account\ amount\n
 comment1.params=
 comment1.target=void\ feeAssesment()
+comment1.text=\n\ Method\ feeAssesment\ is\ tthe\ abstract\ method\ for\ the\ concrete\ class\n\n
 comment2.params=
 comment2.target=void\ resetMonthlyFee()
+comment2.text=\n\ Method\ resetMonthlyFee\ to\ reset\ the\ monthly\ fee\n\n
 comment3.params=
 comment3.target=double\ getMonthlyFee()
+comment3.text=\n\ Method\ getMonthlyFee\ to\ get\ the\ value\ of\ the\ monthly\ fee\n\n\ @return\ The\ return\ value\ is\ the\ monthly\ fee\ in\ double\n
 numComments=4

@@ -1,17 +1,19 @@
-
 /**
- * Write a description of class AccountTypeNotFoundException here.
+ * A class that creates the exception if account not found
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Aldwin Hermanudin 
+ * @version 13.5.2016
  */
+
 public class AccountTypeNotFoundException extends Exception
 {
-    // instance variables - replace the example below with your own
+    
     private char accType;
-
+    
     /**
-     * Constructor for objects of class AccountTypeNotFoundException
+     * AccountTypeNotFoundException Constructor
+     *
+     * @param account_input A parameter
      */
     public AccountTypeNotFoundException(char account_input)
     {
@@ -19,11 +21,11 @@ public class AccountTypeNotFoundException extends Exception
         accType = account_input;
     }
 
+    
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Method getMessage to generate error message
+     *
+     * @return The return value is the string of the error message
      */
     @Override
     public String getMessage() {

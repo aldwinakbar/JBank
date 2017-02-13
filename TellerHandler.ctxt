@@ -1,8 +1,11 @@
 #BlueJ class context
 comment0.params=action_type\ input_gui
 comment0.target=TellerHandler(java.lang.String,\ TellerGUI)
+comment0.text=\n\ TellerHandler\ Constructor\n\n\ @param\ action_type\ A\ parameter\ to\ set\ the\ action\ type\n\ @param\ input_gui\ A\ parameter\ to\ contain\ the\ GUI\ object\n
 comment1.params=buttonClicked
 comment1.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment1.text=\n\ Method\ actionPerformed\ that\ contains\ every\ action\ that\ the\ Button\ in\ the\ Teller\ \n\ \n
 comment2.params=
 comment2.target=void\ receiveFieldData()
+comment2.text=\n\ Method\ receiveFieldData\ to\ receive\ the\ field\ data\ from\ the\ TellerGUI\n\n
 numComments=3

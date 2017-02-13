@@ -1,12 +1,12 @@
-
 import java.io.Serializable;
 
 /**
- * Store every information of each account
+ * An abstract class for every concrete Account class
  * 
  * @author Aldwin Hermanudin 
- * @version 27/02/2016
+ * @version 13.5.2016
  */
+
 public abstract class Account implements Serializable
 {
     protected double balance;
@@ -14,18 +14,30 @@ public abstract class Account implements Serializable
     private Customer account_owner;
 
     /**
-     * Constructor for objects of class Account
+     * Account Constructor
+     *
+     * @param amount A parameter for the initial amount
      */
     public Account(double amount) {
         balance = amount;
     }
-       
+
+    /**
+     * Method withdraw for the abstract method in every concrete Account class
+     *
+     * @param amount A parameter for the withdraw value
+     */
     public abstract void withdraw(double amount) throws AmountOverDrawnException;
-    
+
+    /**
+     * Method toString
+     *
+     * @return The return value is the account id
+     */
     public String toString(){
         return id;        
     }
-    
+
     /**
      * Method to deposit a value to balance. If deposit value above zero, it'll returns true. else it'll return false.
      * 
@@ -37,12 +49,12 @@ public abstract class Account implements Serializable
             balance += amount;
             return true;
         }
-        
+
         else {
             return false;
         }
     }
-    
+
     /**
      * Method to get balance value
      * 
@@ -51,7 +63,7 @@ public abstract class Account implements Serializable
     public double getBalance() {
         return balance;
     }
-    
+
     /**
      * Method to get accout id
      * 
@@ -60,7 +72,7 @@ public abstract class Account implements Serializable
     public String getId() {
         return id;
     }
-    
+
     /**
      * Method to change balance value
      * 
@@ -69,6 +81,5 @@ public abstract class Account implements Serializable
     public void setBalance(double amount) {
         balance = amount;
     }
- 
 
 }

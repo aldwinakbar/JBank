@@ -1,13 +1,11 @@
-
 /**
- * Write a description of class AmountOverDrawnException here.
+ * A class that creates the exception if amount overdrawn
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Aldwin Hermanudin 
+ * @version 13.5.2016
  */
-public class AmountOverDrawnException extends Exception
-{
-    // instance variables - replace the example below with your own
+
+public class AmountOverDrawnException extends Exception{
     private Account accType;
 
     /**
@@ -20,10 +18,9 @@ public class AmountOverDrawnException extends Exception
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Method getMessage to generate error message
+     *
+     * @return The return value is the string of the error message
      */
     @Override
     public String getMessage() {

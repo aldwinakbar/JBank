@@ -1,11 +1,12 @@
 /**
- * Write a description of class Savings here.
+ * An account class for savings account
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Aldwin Hermanudin 
+ * @version 13.5.2016
  */
+
 public class Savings extends Account{
-    
+
     protected double interestEarned;
 
     /**
@@ -20,16 +21,16 @@ public class Savings extends Account{
     public double getInterestEarned() {
         return interestEarned ;
     }    
-    
+
     public void addDailyInterest(int days){
         double r = 0.03;
         double f = balance * Math.pow(1 + (r / 365), days);
         interestEarned = f - balance;
         balance = f;
     }
-    
+
     public void withdraw(double amount) throws AmountOverDrawnException {
-    
+
         double balance_temp = balance;
         double withdraw_result = balance_temp-amount;
         if(withdraw_result >=0){
@@ -37,7 +38,7 @@ public class Savings extends Account{
         }
         else{
             throw new AmountOverDrawnException(this);
-           // return false;
+            // return false;
         }
     }
 }

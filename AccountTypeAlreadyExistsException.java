@@ -1,13 +1,12 @@
-
 /**
- * Write a description of class AccountTypeAlreadyExistsException here.
+ * A class that creates the exception if account already exist
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Aldwin Hermanudin 
+ * @version 13.5.2016
  */
-public class AccountTypeAlreadyExistsException extends Exception
-{
-    // instance variables - replace the example below with your own
+
+public class AccountTypeAlreadyExistsException extends Exception{
+    
     private Account accType;
 
     /**
@@ -19,30 +18,30 @@ public class AccountTypeAlreadyExistsException extends Exception
         accType = account_input;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+
+   /**
+     * Method getMessage to generate error message
+     *
+     * @return The return value is the string of the error message
      */
     @Override
     public String getMessage() {
         if (accType instanceof Investment){
             return super.getMessage() + "Investment";
         }
-        
+
         else if (accType instanceof Savings){
             return super.getMessage() + "Savings";
         }
-                     
+
         else if (accType instanceof LineOfCredit){
             return super.getMessage() + "LineOfCredit";
         }
-        
+
         else if (accType instanceof OverDraftProtection){
             return super.getMessage() + "OverDraftProtection";
         }
-        
+
         else {
             return "Unknown Account.";
         }

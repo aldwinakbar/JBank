@@ -8,6 +8,13 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 import java.math.*;
 
+/**
+ * A class to handle the TellerGUI
+ * 
+ * @author Aldwin Hermanudin 
+ * @version 13.5.2016
+ */
+
 public class TellerGUI extends JPanel{
 
    private JFrame mainFrame;
@@ -35,6 +42,10 @@ public class TellerGUI extends JPanel{
    public JTextField postalCodeField;
    public JTextField emailAddressField;
       
+   /**
+    * TellerGUI Constructor to construct the GUI
+    *
+    */
    public TellerGUI(){
       buildGUI();
       this.customerIdField();
@@ -44,16 +55,11 @@ public class TellerGUI extends JPanel{
       this.actionButton();
    }
    
-     public static void main(String[] args){
-         Bank.setStartTime(9,10);
-         Bank.setCloseTime(22,10);
-         
-         System.out.println("Working Hours");
-         System.out.println(Bank.getHoursOfOperation());
-         TellerGUI TellerLayout = new TellerGUI();
-    }
-  
-   private void buildGUI(){
+    /**
+     * Method buildGUI to construct the main frame
+     *
+     */
+    private void buildGUI(){
       mainFrame = new JFrame("Teller Menu");
       mainFrame.setSize(710, 520);
       mainFrame.setLayout(new GridLayout(2, 1));     
@@ -83,6 +89,10 @@ public class TellerGUI extends JPanel{
       mainFrame.setVisible(true);  
    }
 
+     /**
+      * Method accountTypeRadio to construct the radio button
+      *
+      */
      private void accountTypeRadio(){
          
       final JRadioButton radSavings = new JRadioButton("Savings", true);
@@ -150,6 +160,10 @@ public class TellerGUI extends JPanel{
       mainFrame.setVisible(true);  
    }
    
+   /**
+    * Method customerIdField to coonstruct the customer field
+    *
+    */
    private void customerIdField(){
 
       
@@ -177,6 +191,10 @@ public class TellerGUI extends JPanel{
       mainFrame.setVisible(true);  
    }
    
+   /**
+    * Method amountField to construct the amount, credit_limit, and investment_term field
+    *
+    */
    private void amountField(){
        
       JPanel amount_flow = new JPanel();
@@ -227,6 +245,10 @@ public class TellerGUI extends JPanel{
       mainFrame.setVisible(true);  
    }
    
+      /**
+       * Method customerInfoArea to construct the customer info area
+       *
+       */
       private void customerInfoArea(){
       
       JPanel customer_info = new JPanel();
@@ -334,6 +356,10 @@ public class TellerGUI extends JPanel{
       mainFrame.setVisible(true);  
    }
    
+    /**
+     * Method actionButton to construct the button
+     *
+     */
     private void actionButton(){
         
       JButton addCButton = new JButton("Add Customer");
@@ -343,14 +369,10 @@ public class TellerGUI extends JPanel{
       
       JButton loadFromFile = new JButton("Load from file");
       JButton saveToFile = new JButton("Save to File");
-      JButton loadFromDB = new JButton("Load from database");
-      JButton saveToDB = new JButton("Save to database");
       
       loadFromFile.addActionListener(new TellerHandler("loadfile", this));
       saveToFile.addActionListener(new TellerHandler("savefile", this));
-      loadFromDB.addActionListener(new TellerHandler("loaddb", this));
-      saveToDB.addActionListener(new TellerHandler("savedb", this));
-          
+
       addCButton.addActionListener(new TellerHandler("addc", this));
 
       addAButton.addActionListener(new TellerHandler("adda", this));
@@ -369,8 +391,6 @@ public class TellerGUI extends JPanel{
       
       actionPanel.add(loadFromFile);
       actionPanel.add(saveToFile);
-      actionPanel.add(loadFromDB);
-      actionPanel.add(saveToDB);   
       
       lowerPanel.add(actionPanel); 
       mainFrame.setVisible(true);  

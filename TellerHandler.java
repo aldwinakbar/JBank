@@ -7,11 +7,12 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 
 /**
- * Write a description of class ButtonHandler here.
+ * A class to handle the button action from Teller GUI
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Aldwin Hermanudin 
+ * @version 13.5.2016
  */
+
 public class TellerHandler implements ActionListener {
 
     private TellerGUI tellerGUI;
@@ -45,24 +46,40 @@ public class TellerHandler implements ActionListener {
     public String emailAddress;
     public char accountType;
 
+    /**
+     * TellerHandler Constructor
+     *
+     * @param action_type A parameter to set the action type
+     * @param input_gui A parameter to contain the GUI object
+     */
     public TellerHandler(String action_type, TellerGUI input_gui ) {
         actionType  = action_type;
         tellerGUI = input_gui;
     }
 
+    /**
+     * Method actionPerformed that contains every action that the Button in the Teller 
+     * 
+     */
     @Override
     public void actionPerformed(ActionEvent buttonClicked) {
         this.receiveFieldData();
         if(actionType.equals("loadcustomer")){
             try {
-                customerID    = Integer.parseInt(customerField.getText());     
-
+                customerID    = Integer.parseInt(customerField.getText());   
                 Customer load_customer = Bank.getCustomer(customerID);
                 firstNameField.setText(load_customer.getCustomerFirstName());   
-                lastNameField.setText(load_customer.getCustomerLastName());      
-                dateField.setText(" ");     
-                monthField.setText(" ");      
-                yearField.setText(" ");   
+                lastNameField.setText(load_customer.getCustomerLastName());  
+    
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(load_customer.getDateOfBirth());
+                year = cal.get(Calendar.YEAR);
+                month = cal.get(Calendar.MONTH);
+                date = cal.get(Calendar.DAY_OF_MONTH);
+                dateField.setText("" + date);     
+                monthField.setText("" + month + 1);      
+                yearField.setText("" + year);   
+                
                 phoneNumberField.setText(load_customer.getPhoneNumber());    
                 streetAddressField.setText(load_customer.getstreetAddress()); 
                 cityAddressField.setText(load_customer.getcityAddress());
@@ -110,10 +127,10 @@ public class TellerHandler implements ActionListener {
         else if(actionType.equals("addc")){
 
             try{
-                date          = Integer.parseInt(tellerGUI.dateField.getText());     
-                month         = Integer.parseInt(tellerGUI.monthField.getText());      
-                year          = Integer.parseInt(tellerGUI.yearField.getText());
-                Customer new_customer = new Customer(firstName,lastName, ( new GregorianCalendar( year,month,date).getTime()));
+                date  = Integer.parseInt(tellerGUI.dateField.getText());     
+                month = Integer.parseInt(tellerGUI.monthField.getText());      
+                year  = Integer.parseInt(tellerGUI.yearField.getText());
+                Customer new_customer = new Customer(firstName,lastName, ( new GregorianCalendar( year,month-1,date).getTime()));
                 new_customer.setPhoneNumber(phoneNumber);
                 new_customer.setStreetAddress(streetAddress);
                 new_customer.setCityAddress(cityAddress);
@@ -132,9 +149,9 @@ public class TellerHandler implements ActionListener {
         }
         
         else if(actionType.equals("delete")){
-            customerID    = Integer.parseInt(customerField.getText());
-
+            
             try{
+                customerID    = Integer.parseInt(customerField.getText());
                 Bank.getCustomer(customerID).removeAccount(accountType);
                 JOptionPane.showMessageDialog(null, "Remove Account Success");
             }
@@ -174,6 +191,10 @@ public class TellerHandler implements ActionListener {
         }
     }
 
+    /**
+     * Method receiveFieldData to receive the field data from the TellerGUI
+     *
+     */
     private void receiveFieldData(){
         customerField = tellerGUI.getCustomerIdField();
         amountField   = tellerGUI.getAmountField(); 
